@@ -1,0 +1,14 @@
+class Solution {
+public:
+    vector<int> numberOfPairs(vector<int>& nums) {
+        int cnt[101]{};
+        int pair=0,leftover=0;
+        for(auto i:nums) cnt[i]++;
+        for(int i:cnt ){
+            pair+=i/2;
+            leftover+=i%2;
+        }
+        return {pair,leftover};
+        
+    }
+};
