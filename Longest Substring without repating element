@@ -1,0 +1,33 @@
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int n=s.size(),r=0,l=0,ans=0;
+        vector<int > count(256,-1);
+        while(r<n){
+            if(count[s[r]] != -1)
+                l=max(count[s[r]]+1,l);
+            count[s[r]]=r;
+            ans=max(ans,r-l+1);
+            r++;
+        }
+       return ans; 
+    }
+};
+// another optimised apptoch is
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int n=s.size(),r=0,l=0,ans=0;
+        vector<int > count(256,0);
+        while(r<n){
+            count[s[r]]++;
+            while(count[s[r]]>1){
+                count[s[l]]--;
+                l++;
+            }
+            ans=max(ans,r-l+1);
+            r++;
+        }
+       return ans; 
+    }
+};
